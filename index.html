@@ -289,8 +289,8 @@ mixing, arrangement, MIDI production and intelligent audio workflows.
 </div>
 
 <div class="actions">
-  <a class="btn primary" href="https://github.com/jorikallio6/clarvox-elctron/releases" target="_blank" rel="noopener" target="_blank" rel="noopener">DOWNLOAD ALPHA</a>
-  <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron/releases" target="_blank" rel="noopener" target="_blank" rel="noopener">VIEW GITHUB</a>
+  <a class="btn primary" id="downloadAlphaBtn" href="https://github.com/jorikallio6/clarvox-elctron/releases">DOWNLOAD ALPHA</a>
+  <a class="btn" id="viewGithubBtn" href="https://github.com/jorikallio6/clarvox-elctron/releases">VIEW GITHUB</a>
 </div>
 
 
@@ -344,6 +344,26 @@ Public preview page only. Main ClarVox engine and source remain private.
 </div>
 
 </section>
+
+
+<script>
+(function(){
+  const release = "https://github.com/jorikallio6/clarvox-elctron/releases";
+  ["downloadAlphaBtn","viewGithubBtn"].forEach(function(id){
+    const el = document.getElementById(id);
+    if(el){
+      el.addEventListener("click", function(e){
+        e.preventDefault();
+        window.location.href = release;
+      });
+      el.addEventListener("touchend", function(e){
+        e.preventDefault();
+        window.location.href = release;
+      });
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
