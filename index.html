@@ -4,90 +4,302 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ClarVox Audio OS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#050b12;--panel:#101b29;--panel2:#172637;--line:rgba(150,195,230,.18);
-  --text:#e9f3fb;--muted:#91a7ba;--cyan:#79e6ff;--green:#62ff8a;--orange:#ff8b55;
+  --bg:#05080d;
+  --panel:#0c1219;
+  --panel2:#111922;
+  --line:#273241;
+  --cyan:#7cecff;
+  --green:#59ff7a;
+  --orange:#ff9b5f;
+  --text:#edf5ff;
+  --muted:#8ea0b3;
 }
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at 18% 0%,#1a3854 0%,transparent 32%),linear-gradient(180deg,#07111d,#03070c);color:var(--text);font-family:"Arial Narrow","Roboto Condensed",Impact,Arial,sans-serif;letter-spacing:.02em}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:34px 34px}
-.wrap{max-width:1280px;margin:auto;padding:22px 16px 70px}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.22em;font-size:19px}
-.dot{width:13px;height:13px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}
-.badge{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:#101a26;color:#b8cfe2;font-weight:900}
-.hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center}
-h1{font-size:clamp(52px,8vw,104px);line-height:.86;margin:0 0 20px;font-weight:1000;letter-spacing:-.06em}
-h1 span{color:var(--cyan);text-shadow:0 0 24px rgba(121,230,255,.22)}
-.lead{font-family:Arial,sans-serif;font-size:clamp(17px,2vw,23px);line-height:1.5;color:var(--muted);letter-spacing:0;max-width:660px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
-.btn{min-height:58px;display:grid;place-items:center;text-decoration:none;border-radius:5px;font-weight:1000;color:#06101a;background:linear-gradient(180deg,#a8efff,#4fc8f0);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 18px 55px rgba(70,180,230,.18)}
-.btn.alt{color:#eaf4fb;background:#142235;border:1px solid var(--line);box-shadow:none}
-.stage{border:1px solid var(--line);background:linear-gradient(180deg,#142235,#08111c);box-shadow:0 35px 110px rgba(0,0,0,.6);border-radius:8px;overflow:hidden}
-.stageTop{height:42px;background:#202b36;display:flex;align-items:center;gap:8px;padding:0 10px;border-bottom:1px solid rgba(255,255,255,.08)}
-.tab{font-size:11px;font-weight:900;padding:7px 9px;background:#0b121c;border:1px solid rgba(255,255,255,.08);border-radius:3px;color:#c6d8e8}
-.tab.hot{color:#70ff95}
-.screen{position:relative;aspect-ratio:16/9;background:#07101a;overflow:hidden}
-.screen img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04) brightness(.92)}
-.screen:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,18,.15),transparent 40%,rgba(5,10,18,.2));pointer-events:none}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-.card{background:linear-gradient(180deg,#122033,#0b1522);border:1px solid var(--line);border-radius:7px;padding:18px;box-shadow:0 18px 60px rgba(0,0,0,.28)}
-.card h3{margin:0 0 8px;font-size:26px}
-.status{display:inline-flex;padding:6px 9px;border-radius:4px;background:#07111d;border:1px solid var(--line);color:var(--green);font-size:12px;font-weight:900;margin:6px 0 14px}
-.note{font-family:Arial,sans-serif;color:var(--muted);line-height:1.55;letter-spacing:0}
-.download{display:block;text-align:center;text-decoration:none;color:#06101a;background:linear-gradient(180deg,#a8efff,#4fc8f0);border-radius:5px;padding:14px;font-weight:1000;margin-top:12px}
-.disabled{background:#111b29;color:#7890a4;border:1px solid var(--line);pointer-events:none}
-.showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-.shot{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#07111d}
-.shot img{width:100%;height:180px;object-fit:cover;display:block}
-.shot b{display:block;padding:12px;color:#dcecf8}
-footer{text-align:center;color:#7890a4;border-top:1px solid var(--line);margin-top:42px;padding-top:22px;font-family:Arial,sans-serif}
-@media(max-width:900px){.hero,.grid,.showcase{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.shot img{height:auto}}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(180deg,#07101b,#03070d 70%);
+  background-size:40px 40px,40px 40px,100% 100%;
+  color:var(--text);
+  font-family:'Barlow Condensed',sans-serif;
+}
+
+.topbar{
+  height:74px;
+  border-bottom:1px solid #202a35;
+  background:
+    linear-gradient(180deg,#252c35,#121820 45%,#0b1016);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 8px 24px rgba(0,0,0,.55);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+}
+
+.logo{
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.logo span{
+  color:#9fb0c3;
+}
+
+.topbuttons{
+  display:flex;
+  gap:10px;
+}
+
+.topbtn{
+  border:1px solid #2c3744;
+  background:linear-gradient(180deg,#17212b,#0d131a);
+  padding:10px 16px;
+  color:#d9e6f5;
+  font-weight:700;
+  letter-spacing:.08em;
+  font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.hero{
+  max-width:1500px;
+  margin:auto;
+  padding:46px 22px 70px;
+}
+
+.hero h1{
+  margin:0;
+  font-size:88px;
+  line-height:.92;
+  letter-spacing:-.03em;
+}
+
+.hero h1 span{
+  color:var(--cyan);
+}
+
+.sub{
+  margin-top:24px;
+  max-width:900px;
+  color:#b6c6d7;
+  font-size:28px;
+  line-height:1.35;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:34px;
+}
+
+.btn{
+  text-decoration:none;
+  color:white;
+  border:1px solid #2d3743;
+  background:linear-gradient(180deg,#1c2732,#10171f);
+  padding:18px 34px;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:.08em;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 10px 30px rgba(0,0,0,.35);
+}
+
+.btn.primary{
+  background:linear-gradient(135deg,#ff9b5f,#ffe0cf);
+  color:black;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+  gap:28px;
+  margin-top:48px;
+}
+
+.card{
+  border:1px solid #273240;
+  background:linear-gradient(180deg,#101923,#091019);
+  overflow:hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.04),
+    0 25px 60px rgba(0,0,0,.45);
+}
+
+.card img{
+  width:100%;
+  display:block;
+}
+
+.cardbody{
+  padding:22px;
+}
+
+.kicker{
+  color:var(--green);
+  font-size:14px;
+  letter-spacing:.2em;
+  font-weight:700;
+}
+
+.card h2{
+  margin:10px 0 0;
+  font-size:42px;
+  line-height:1;
+}
+
+.card p{
+  margin-top:14px;
+  color:#9cb0c4;
+  font-size:22px;
+  line-height:1.35;
+}
+
+.footer{
+  margin-top:70px;
+  padding-top:30px;
+  border-top:1px solid #23303d;
+  color:#8294a8;
+  font-size:18px;
+}
+
+@media(max-width:900px){
+
+.hero h1{
+  font-size:58px;
+}
+
+.sub{
+  font-size:22px;
+}
+
+.card h2{
+  font-size:32px;
+}
+
+}
 </style>
 </head>
 <body>
-<main class="wrap">
-<header class="top">
-  <div class="logo"><span class="dot"></span><span>[ CLARVOX ]</span></div>
-  <div class="badge">NATIVE AUDIO OS · ALPHA</div>
-</header>
+
+<div class="topbar">
+
+  <div class="brand">
+    <div class="dot"></div>
+    <div class="logo">[ <span>CLARVOX</span> ]</div>
+  </div>
+
+  <div class="topbuttons">
+    <div class="topbtn">ENGINE ONLINE</div>
+    <div class="topbtn">64-BIT FLOW</div>
+    <div class="topbtn">MIXER</div>
+    <div class="topbtn">PRODUCER</div>
+  </div>
+
+</div>
 
 <section class="hero">
-  <div>
-    <h1>ClarVox<br><span>Audio OS</span></h1>
-    <p class="lead">A pro premium dark studio platform for mixing, track editing, MIDI control, audio editing and producer intelligence.</p>
-    <div class="actions">
-      <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">DOWNLOAD ALPHA</a>
-      <a class="btn alt" href="#downloads">ALL PLATFORMS</a>
-    </div>
-    <p class="note">Public page only. Main ClarVox engine and source remain private.</p>
-  </div>
 
-  <div class="stage">
-    <div class="stageTop"><span class="tab hot">ENGINE ONLINE</span><span class="tab">64-BIT FLOW</span><span class="tab">MIXER</span><span class="tab">PRODUCER</span></div>
-    <div class="screen"><img src="assets/mixer.png" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:80px 24px;color:#79e6ff;font-size:42px;font-weight:900&quot;>[ CLARVOX ] MIXER PREVIEW</div>'"></div>
-  </div>
+<h1>
+ClarVox<br>
+<span>Audio OS</span>
+</h1>
+
+<div class="sub">
+A premium dark production environment built for serious music creation,
+mixing, arrangement, MIDI production and intelligent audio workflows.
+</div>
+
+<div class="actions">
+  <a class="btn primary" href="#">DOWNLOAD ALPHA</a>
+  <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron">VIEW GITHUB</a>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<img src="assets/mixer-wide.png">
+<div class="cardbody">
+<div class="kicker">MIX ENGINE</div>
+<h2>ClarVox Mixer</h2>
+<p>
+Professional analog-inspired mixer environment with premium routing,
+channel intelligence and mastering workflow.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="assets/tracks-wide.png">
+<div class="cardbody">
+<div class="kicker">TRACK VIEW</div>
+<h2>Audio + MIDI Timeline</h2>
+<p>
+Unified production timeline for advanced audio and MIDI arrangement.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="assets/audio-editor.png">
+<div class="cardbody">
+<div class="kicker">AUDIO EDITOR</div>
+<h2>Waveform Editing</h2>
+<p>
+Precision editing workflow with clean visual waveform processing.
+</p>
+</div>
+</div>
+
+<div class="card">
+<img src="assets/midi-editor.png">
+<div class="cardbody">
+<div class="kicker">MIDI ENGINE</div>
+<h2>Piano Roll System</h2>
+<p>
+Professional MIDI composition environment with integrated routing.
+</p>
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+Public preview page only. Main ClarVox engine and source remain private.
+</div>
+
 </section>
 
-<section class="showcase">
-  <div class="shot"><img src="assets/tracks.png"><b>Track View</b></div>
-  <div class="shot"><img src="assets/audio-editor.png"><b>Audio Editor</b></div>
-  <div class="shot"><img src="assets/midi-editor.png"><b>MIDI Editor</b></div>
-</section>
-
-<section id="downloads" class="grid">
-  <div class="card"><h3>macOS</h3><div class="status">ALPHA AVAILABLE</div><p class="note">Unsigned Intel x64 alpha build. Apple Silicon / Universal coming next.</p><a class="download" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download macOS</a></div>
-  <div class="card"><h3>Windows</h3><div class="status">COMING SOON</div><p class="note">Windows installer and portable build will be added here.</p><a class="download disabled">Coming soon</a></div>
-  <div class="card"><h3>Linux</h3><div class="status">COMING SOON</div><p class="note">Linux AppImage and .deb builds are planned.</p><a class="download disabled">Coming soon</a></div>
-</section>
-
-<section class="card" style="margin-top:14px">
-  <h3>Alpha notice</h3>
-  <p class="note">This is an early test build and is not yet Apple notarized. macOS may show a security warning on first launch.</p>
-</section>
-
-<footer>[ CLARVOX ] · Pro Premium Download Center · Main engine private</footer>
-</main>
 </body>
 </html>
