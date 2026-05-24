@@ -3,210 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClarVox Download Center</title>
+<title>ClarVox Audio OS</title>
 <style>
 :root{
-  --bg:#07111d;
-  --bg2:#0c1725;
-  --panel:#111f31;
-  --panel2:#18283b;
-  --line:rgba(165,205,235,.18);
-  --line2:rgba(255,130,80,.35);
-  --text:#eaf3fb;
-  --muted:#91a8bc;
-  --cyan:#73d9ff;
-  --green:#68ff83;
-  --yellow:#ffd856;
-  --red:#ff614f;
-  --orange:#ff8a56;
-  --steel:#bdd2e8;
+  --bg:#050b12;--panel:#101b29;--panel2:#172637;--line:rgba(150,195,230,.18);
+  --text:#e9f3fb;--muted:#91a7ba;--cyan:#79e6ff;--green:#62ff8a;--orange:#ff8b55;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  color:var(--text);
-  background:
-    radial-gradient(circle at 18% 0%,rgba(80,130,180,.28),transparent 34%),
-    linear-gradient(180deg,#081320,#07111d 48%,#03070d);
-}
-body:before{
-  content:"";
-  position:fixed;inset:0;pointer-events:none;
-  background:
-    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:36px 36px;
-  opacity:.45;
-}
-.wrap{max-width:1200px;margin:0 auto;padding:28px 18px 70px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:44px}
-.wordmark{
-  display:flex;align-items:center;gap:10px;
-  font-weight:1000;letter-spacing:.18em;font-size:19px;
-}
-.led{width:14px;height:14px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}
-.bracket{color:#8fb8d6}
-.badge{
-  border:1px solid var(--line);
-  background:rgba(20,35,55,.75);
-  border-radius:999px;
-  padding:10px 15px;
-  color:#c8d9e8;
-  font-weight:900;
-}
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
-h1{
-  font-size:clamp(48px,8vw,105px);
-  line-height:.88;
-  letter-spacing:-.075em;
-  margin:0 0 24px;
-}
-h1 span{
-  background:linear-gradient(100deg,#eff8ff,#8fe5ff,#d7ebff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-.lead{font-size:clamp(18px,2.3vw,25px);line-height:1.5;color:#a8b9c8;margin:0;max-width:700px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0}
-.btn{
-  min-height:60px;border-radius:16px;display:grid;place-items:center;
-  text-decoration:none;font-weight:1000;font-size:18px;
-  color:#07111d;background:linear-gradient(135deg,#ff8a56,#d9ecff);
-  box-shadow:0 18px 50px rgba(70,140,200,.18), inset 0 1px 0 rgba(255,255,255,.55);
-}
-.btn.secondary{color:#eaf3fb;background:rgba(255,255,255,.045);border:1px solid var(--line);box-shadow:none}
-.note{color:#92a8ba;line-height:1.6}
-
-.mixer{
-  border:1px solid var(--line);
-  border-radius:28px;
-  background:linear-gradient(180deg,#132438,#09131f);
-  box-shadow:0 28px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
-  overflow:hidden;
-}
-.mixerTop{
-  display:flex;gap:7px;align-items:center;padding:12px;
-  background:#0a111c;border-bottom:1px solid var(--line);
-  font-size:10px;font-weight:1000;letter-spacing:.08em;color:#b8cde0;
-}
-.tab{padding:7px 9px;border-radius:4px;background:#152337;border:1px solid rgba(255,255,255,.08)}
-.tab.hot{background:#25354a;border-color:rgba(255,138,86,.45);color:#ffb08a}
-.board{display:grid;grid-template-columns:repeat(8,1fr) 1.25fr;min-height:390px}
-.ch{border-right:1px solid rgba(170,205,235,.11);padding:10px 7px;background:linear-gradient(180deg,#17283d,#101d2e)}
-.name{text-align:center;font-size:10px;font-weight:1000;color:#e8f3ff;margin-bottom:8px}
-.meter{height:58px;width:16px;margin:0 auto 14px;border-radius:3px;background:#07101a;display:flex;align-items:end;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
-.meter span{display:block;width:100%;height:75%;background:linear-gradient(0deg,var(--green),var(--yellow),var(--red))}
-.slot{height:6px;border-radius:4px;background:#c8d8e8;margin:8px 4px;box-shadow:0 0 8px rgba(120,190,255,.15)}
-.faderTrack{height:210px;width:6px;background:#050a10;margin:14px auto;border-radius:999px;position:relative}
-.fader{width:28px;height:52px;border-radius:7px;background:linear-gradient(180deg,#eff7ff,#8caac4 55%,#f7fbff);position:absolute;left:50%;transform:translateX(-50%);box-shadow:0 4px 12px rgba(0,0,0,.45)}
-.db{text-align:center;color:#79ff8c;font-size:10px;font-weight:900}
-.master{padding:14px;background:#0c1624}
-.master h3{margin:0 0 14px;font-size:22px;letter-spacing:.12em}
-.masterGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;color:#aee7ff;font-size:10px;font-weight:900}
-.masterMeter{height:100px;width:34px;margin:15px auto;border-radius:4px;background:#060c13;border:1px solid rgba(255,255,255,.12);display:flex;align-items:end;overflow:hidden}
-.masterMeter span{display:block;width:100%;height:82%;background:linear-gradient(0deg,var(--green),var(--yellow),var(--red))}
-.masterFader{height:150px;width:7px;background:#050a10;margin:12px auto;border-radius:999px;position:relative}
-.masterFader i{width:38px;height:58px;border-radius:7px;background:linear-gradient(180deg,#f6fbff,#8aa8c4 55%,#f5fbff);position:absolute;left:50%;top:48px;transform:translateX(-50%);display:block}
-
-.section{margin-top:56px}
-.section h2{font-size:clamp(30px,4.4vw,50px);letter-spacing:-.05em;margin:0 0 20px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{
-  padding:22px;border-radius:22px;border:1px solid var(--line);
-  background:linear-gradient(180deg,rgba(22,39,59,.86),rgba(10,20,32,.86));
-  box-shadow:0 18px 60px rgba(0,0,0,.28);
-}
-.card h3{font-size:26px;margin:0 0 8px}
-.status{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:7px 10px;margin:8px 0 16px;color:#bdd7e8;font-weight:900;font-size:13px}
-.status.alpha{color:var(--green)}
-.download{display:block;text-align:center;text-decoration:none;color:#07111d;background:linear-gradient(135deg,#ff8a56,#d9ecff);border-radius:14px;padding:15px;margin-top:14px;font-weight:1000}
-.disabled{opacity:.55;pointer-events:none;color:#8ea3b5;background:rgba(255,255,255,.06);border:1px solid var(--line)}
-.warning{border-color:rgba(255,138,86,.35);background:rgba(255,138,86,.07)}
-footer{margin-top:58px;border-top:1px solid var(--line);padding-top:22px;text-align:center;color:#8ca3b8}
-
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .actions{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-  .board{grid-template-columns:repeat(4,1fr)}
-  .master{grid-column:1/-1}
-  .tab:nth-child(n+6){display:none}
-}
+body{margin:0;background:radial-gradient(circle at 18% 0%,#1a3854 0%,transparent 32%),linear-gradient(180deg,#07111d,#03070c);color:var(--text);font-family:"Arial Narrow","Roboto Condensed",Impact,Arial,sans-serif;letter-spacing:.02em}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:34px 34px}
+.wrap{max-width:1280px;margin:auto;padding:22px 16px 70px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.22em;font-size:19px}
+.dot{width:13px;height:13px;border-radius:50%;background:var(--green);box-shadow:0 0 18px var(--green)}
+.badge{border:1px solid var(--line);border-radius:6px;padding:10px 14px;background:#101a26;color:#b8cfe2;font-weight:900}
+.hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center}
+h1{font-size:clamp(52px,8vw,104px);line-height:.86;margin:0 0 20px;font-weight:1000;letter-spacing:-.06em}
+h1 span{color:var(--cyan);text-shadow:0 0 24px rgba(121,230,255,.22)}
+.lead{font-family:Arial,sans-serif;font-size:clamp(17px,2vw,23px);line-height:1.5;color:var(--muted);letter-spacing:0;max-width:660px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
+.btn{min-height:58px;display:grid;place-items:center;text-decoration:none;border-radius:5px;font-weight:1000;color:#06101a;background:linear-gradient(180deg,#a8efff,#4fc8f0);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 18px 55px rgba(70,180,230,.18)}
+.btn.alt{color:#eaf4fb;background:#142235;border:1px solid var(--line);box-shadow:none}
+.stage{border:1px solid var(--line);background:linear-gradient(180deg,#142235,#08111c);box-shadow:0 35px 110px rgba(0,0,0,.6);border-radius:8px;overflow:hidden}
+.stageTop{height:42px;background:#202b36;display:flex;align-items:center;gap:8px;padding:0 10px;border-bottom:1px solid rgba(255,255,255,.08)}
+.tab{font-size:11px;font-weight:900;padding:7px 9px;background:#0b121c;border:1px solid rgba(255,255,255,.08);border-radius:3px;color:#c6d8e8}
+.tab.hot{color:#70ff95}
+.screen{position:relative;aspect-ratio:16/9;background:#07101a;overflow:hidden}
+.screen img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.04) brightness(.92)}
+.screen:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,18,.15),transparent 40%,rgba(5,10,18,.2));pointer-events:none}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+.card{background:linear-gradient(180deg,#122033,#0b1522);border:1px solid var(--line);border-radius:7px;padding:18px;box-shadow:0 18px 60px rgba(0,0,0,.28)}
+.card h3{margin:0 0 8px;font-size:26px}
+.status{display:inline-flex;padding:6px 9px;border-radius:4px;background:#07111d;border:1px solid var(--line);color:var(--green);font-size:12px;font-weight:900;margin:6px 0 14px}
+.note{font-family:Arial,sans-serif;color:var(--muted);line-height:1.55;letter-spacing:0}
+.download{display:block;text-align:center;text-decoration:none;color:#06101a;background:linear-gradient(180deg,#a8efff,#4fc8f0);border-radius:5px;padding:14px;font-weight:1000;margin-top:12px}
+.disabled{background:#111b29;color:#7890a4;border:1px solid var(--line);pointer-events:none}
+.showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.shot{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:#07111d}
+.shot img{width:100%;height:180px;object-fit:cover;display:block}
+.shot b{display:block;padding:12px;color:#dcecf8}
+footer{text-align:center;color:#7890a4;border-top:1px solid var(--line);margin-top:42px;padding-top:22px;font-family:Arial,sans-serif}
+@media(max-width:900px){.hero,.grid,.showcase{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.shot img{height:auto}}
 </style>
 </head>
 <body>
 <main class="wrap">
-  <header class="top">
-    <div class="wordmark"><span class="led"></span><span class="bracket">[</span> CLARVOX <span class="bracket">]</span></div>
-    <div class="badge">Alpha Download Center</div>
-  </header>
+<header class="top">
+  <div class="logo"><span class="dot"></span><span>[ CLARVOX ]</span></div>
+  <div class="badge">NATIVE AUDIO OS · ALPHA</div>
+</header>
 
-  <section class="hero">
-    <div>
-      <h1>ClarVox<br><span>Audio OS</span></h1>
-      <p class="lead">A dark studio-grade production platform for mixing, audio intelligence, arrangement tools and a serious DAW-style creative workflow.</p>
-      <div class="actions">
-        <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download Alpha</a>
-        <a class="btn secondary" href="https://github.com/jorikallio6/clarvox-download">View Public Page Repo</a>
-      </div>
-      <p class="note">The main ClarVox source code is private. This public page only provides the download center and product presentation.</p>
+<section class="hero">
+  <div>
+    <h1>ClarVox<br><span>Audio OS</span></h1>
+    <p class="lead">A pro premium dark studio platform for mixing, track editing, MIDI control, audio editing and producer intelligence.</p>
+    <div class="actions">
+      <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">DOWNLOAD ALPHA</a>
+      <a class="btn alt" href="#downloads">ALL PLATFORMS</a>
     </div>
+    <p class="note">Public page only. Main ClarVox engine and source remain private.</p>
+  </div>
 
-    <div class="mixer">
-      <div class="mixerTop">
-        <div class="tab hot">NATIVE</div><div class="tab">ENGINE ONLINE</div><div class="tab">64-BIT FLOW</div><div class="tab">SETUP</div><div class="tab">PATCH BAY</div><div class="tab">PRODUCER</div>
-      </div>
-      <div class="board">
-        <div class="ch"><div class="name">KICK</div><div class="meter"><span style="height:72%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:78px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">SNARE</div><div class="meter"><span style="height:68%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:90px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">HI-HAT</div><div class="meter"><span style="height:60%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:102px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">BASS</div><div class="meter"><span style="height:76%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:112px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">GTR L</div><div class="meter"><span style="height:62%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:122px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">KEYS</div><div class="meter"><span style="height:66%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:130px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">VOCAL</div><div class="meter"><span style="height:80%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:118px"></div></div><div class="db">0.0 dB</div></div>
-        <div class="ch"><div class="name">FX</div><div class="meter"><span style="height:55%"></span></div><div class="slot"></div><div class="faderTrack"><div class="fader" style="top:142px"></div></div><div class="db">0.0 dB</div></div>
-        <aside class="master">
-          <h3>MASTER</h3>
-          <div class="masterMeter"><span></span></div>
-          <div class="masterFader"><i></i></div>
-          <div class="masterGrid"><span>TRUE PEAK</span><span>-1.0</span><span>HEADROOM</span><span>SAFE</span><span>EXPORT</span><span>READY</span></div>
-        </aside>
-      </div>
-    </div>
-  </section>
+  <div class="stage">
+    <div class="stageTop"><span class="tab hot">ENGINE ONLINE</span><span class="tab">64-BIT FLOW</span><span class="tab">MIXER</span><span class="tab">PRODUCER</span></div>
+    <div class="screen"><img src="assets/mixer.png" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:80px 24px;color:#79e6ff;font-size:42px;font-weight:900&quot;>[ CLARVOX ] MIXER PREVIEW</div>'"></div>
+  </div>
+</section>
 
-  <section class="section">
-    <h2>Downloads</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>macOS</h3>
-        <div class="status alpha">Alpha available</div>
-        <p class="note">Unsigned Intel x64 alpha test build. Apple Silicon and Universal build coming next.</p>
-        <a class="download" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download macOS Alpha</a>
-      </div>
-      <div class="card">
-        <h3>Windows</h3>
-        <div class="status">Coming soon</div>
-        <p class="note">Windows installer and portable build will be added here.</p>
-        <a class="download disabled" href="#">Windows coming soon</a>
-      </div>
-      <div class="card">
-        <h3>Linux</h3>
-        <div class="status">Coming soon</div>
-        <p class="note">Linux AppImage and .deb builds are planned.</p>
-        <a class="download disabled" href="#">Linux coming soon</a>
-      </div>
-    </div>
-  </section>
+<section class="showcase">
+  <div class="shot"><img src="assets/tracks.png"><b>Track View</b></div>
+  <div class="shot"><img src="assets/audio-editor.png"><b>Audio Editor</b></div>
+  <div class="shot"><img src="assets/midi-editor.png"><b>MIDI Editor</b></div>
+</section>
 
-  <section class="section">
-    <div class="card warning">
-      <h2>Alpha notice</h2>
-      <p class="note">This is an early test build and is not yet Apple notarized. macOS may show a security warning on first launch.</p>
-    </div>
-  </section>
+<section id="downloads" class="grid">
+  <div class="card"><h3>macOS</h3><div class="status">ALPHA AVAILABLE</div><p class="note">Unsigned Intel x64 alpha build. Apple Silicon / Universal coming next.</p><a class="download" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download macOS</a></div>
+  <div class="card"><h3>Windows</h3><div class="status">COMING SOON</div><p class="note">Windows installer and portable build will be added here.</p><a class="download disabled">Coming soon</a></div>
+  <div class="card"><h3>Linux</h3><div class="status">COMING SOON</div><p class="note">Linux AppImage and .deb builds are planned.</p><a class="download disabled">Coming soon</a></div>
+</section>
 
-  <footer>[ CLARVOX ] · Public Download Center · Main engine repository remains private</footer>
+<section class="card" style="margin-top:14px">
+  <h3>Alpha notice</h3>
+  <p class="note">This is an early test build and is not yet Apple notarized. macOS may show a security warning on first launch.</p>
+</section>
+
+<footer>[ CLARVOX ] · Pro Premium Download Center · Main engine private</footer>
 </main>
 </body>
 </html>
