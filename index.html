@@ -214,6 +214,45 @@ body{
 
 }
 </style>
+
+<style>
+.mainshot{
+  margin-top:46px;
+  border:1px solid #273240;
+  background:#071019;
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+}
+.mainshot img{
+  width:100%;
+  display:block;
+}
+.downloadgrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:34px;
+}
+.downloadCard{
+  text-decoration:none;
+  border:1px solid #273240;
+  background:linear-gradient(180deg,#17212b,#0d131a);
+  padding:24px;
+  color:#edf5ff;
+  box-shadow:0 18px 45px rgba(0,0,0,.35);
+}
+.downloadCard b{
+  display:block;
+  font-size:32px;
+  letter-spacing:.08em;
+}
+.downloadCard span{
+  display:block;
+  margin-top:8px;
+  color:#8ea0b3;
+  font-size:20px;
+}
+</style>
+
 </head>
 <body>
 
@@ -247,53 +286,50 @@ mixing, arrangement, MIDI production and intelligent audio workflows.
   <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron">VIEW GITHUB</a>
 </div>
 
+
+<div class="mainshot">
+  <img src="assets/mixer-wide.png" alt="ClarVox Mixer">
+</div>
+
 <div class="grid">
+  <div class="card">
+    <img src="assets/tracks-wide.png" alt="ClarVox Track View">
+    <div class="cardbody">
+      <div class="kicker">TRACK VIEW</div>
+      <h2>Audio + MIDI Timeline</h2>
+      <p>Unified timeline for production, arrangement and editing workflow.</p>
+    </div>
+  </div>
 
-<div class="card">
-<img src="assets/mixer-wide.png">
-<div class="cardbody">
-<div class="kicker">MIX ENGINE</div>
-<h2>ClarVox Mixer</h2>
-<p>
-Professional analog-inspired mixer environment with premium routing,
-channel intelligence and mastering workflow.
-</p>
-</div>
-</div>
+  <div class="card">
+    <img src="assets/audio-editor.png" alt="ClarVox Audio Editor">
+    <div class="cardbody">
+      <div class="kicker">AUDIO EDITOR</div>
+      <h2>Waveform Editing</h2>
+      <p>Detailed waveform editing for audio production and clip workflow.</p>
+    </div>
+  </div>
 
-<div class="card">
-<img src="assets/tracks-wide.png">
-<div class="cardbody">
-<div class="kicker">TRACK VIEW</div>
-<h2>Audio + MIDI Timeline</h2>
-<p>
-Unified production timeline for advanced audio and MIDI arrangement.
-</p>
-</div>
-</div>
-
-<div class="card">
-<img src="assets/audio-editor.png">
-<div class="cardbody">
-<div class="kicker">AUDIO EDITOR</div>
-<h2>Waveform Editing</h2>
-<p>
-Precision editing workflow with clean visual waveform processing.
-</p>
-</div>
+  <div class="card">
+    <img src="assets/midi-editor.png" alt="ClarVox MIDI Editor">
+    <div class="cardbody">
+      <div class="kicker">MIDI ENGINE</div>
+      <h2>Piano Roll</h2>
+      <p>Professional MIDI composition view for notes, rhythm and arrangement.</p>
+    </div>
+  </div>
 </div>
 
-<div class="card">
-<img src="assets/midi-editor.png">
-<div class="cardbody">
-<div class="kicker">MIDI ENGINE</div>
-<h2>Piano Roll System</h2>
-<p>
-Professional MIDI composition environment with integrated routing.
-</p>
-</div>
-</div>
-
+<div id="downloads" class="downloadgrid">
+  <a class="downloadCard" href="https://github.com/jorikallio6/clarvox-elctron/releases">
+    <b>macOS</b><span>Open macOS downloads</span>
+  </a>
+  <a class="downloadCard" href="https://github.com/jorikallio6/clarvox-elctron/releases">
+    <b>Windows</b><span>Open Windows downloads</span>
+  </a>
+  <a class="downloadCard" href="https://github.com/jorikallio6/clarvox-elctron/releases">
+    <b>Linux</b><span>Open Linux downloads</span>
+  </a>
 </div>
 
 <div class="footer">
