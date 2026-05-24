@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ClarVox Download Center</title>
+  <style>
+    :root{
+      --bg0:#060b12;
+      --bg1:#0b1320;
+      --bg2:#111b2b;
+      --panel:rgba(13,23,36,.88);
+      --panel2:rgba(255,255,255,.045);
+      --line:rgba(170,205,235,.16);
+      --line2:rgba(120,170,210,.28);
+      --text:#e7eef6;
+      --muted:#9aaec0;
+      --soft:#b7cde0;
+      --gold:#ff9a61;
+      --gold2:#b8d8f2;
+      --violet:#253a5c;
+      --cyan:#63d9ff;
+      --ok:#77ff8a;
+      --warn:#ffcc66;
+      --danger:#ff6b6b;
+    }
+
+    *{box-sizing:border-box}
+
+    html{background:#020204}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 0%,rgba(74,112,156,.24),transparent 34%),
+        radial-gradient(circle at 88% 16%,rgba(54,104,150,.16),transparent 32%),
+        linear-gradient(180deg,#08101a 0%,#0b1422 38%,#050911 100%);
+      overflow-x:hidden;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 70%);
+    }
+
+    .wrap{max-width:1180px;margin:0 auto;padding:30px 20px 72px}
+
+    .nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      margin-bottom:58px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      letter-spacing:.20em;
+      font-weight:950;
+      font-size:17px;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+      border-radius:15px;
+      box-shadow:0 0 28px rgba(95,170,220,.20),0 18px 44px rgba(0,0,0,.55);
+    }
+
+    .pill{
+      border:1px solid var(--line2);
+      border-radius:999px;
+      padding:11px 16px;
+      color:var(--soft);
+      background:rgba(90,145,190,.07);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:38px;
+      align-items:center;
+    }
+
+    h1{
+      margin:0 0 24px;
+      font-size:clamp(52px,8.5vw,112px);
+      line-height:.86;
+      letter-spacing:-.075em;
+      font-weight:1000;
+    }
+
+    .gold{
+      background:linear-gradient(100deg,#eef7ff 0%,#b9d6eb 34%,#78dfff 62%,#f2f7ff 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter:drop-shadow(0 0 22px rgba(90,190,255,.13));
+    }
+
+    .lead{
+      font-size:clamp(18px,2.3vw,25px);
+      line-height:1.48;
+      color:var(--muted);
+      max-width:720px;
+      margin:0;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin:31px 0 24px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:17px 24px;
+      border-radius:18px;
+      text-decoration:none;
+      font-weight:1000;
+      color:#070706;
+      background:linear-gradient(135deg,#e88b58,#c9dced);
+      box-shadow:0 18px 54px rgba(70,120,170,.18), inset 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .btn.secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.045);
+      border:1px solid var(--line);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .note{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:16px;
+    }
+
+    .console{
+      position:relative;
+      min-height:470px;
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:22px;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.022)),
+        radial-gradient(circle at 50% 15%,rgba(90,145,190,.13),transparent 36%),
+        #050609;
+      box-shadow:0 34px 120px rgba(0,0,0,.72), inset 0 1px 0 rgba(255,255,255,.11);
+      overflow:hidden;
+    }
+
+    .console:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:radial-gradient(circle at 50% 0%,rgba(216,182,109,.28),transparent 28%);
+      pointer-events:none;
+    }
+
+    .screen{
+      position:relative;
+      z-index:1;
+      height:270px;
+      border-radius:27px;
+      border:1px solid rgba(125,170,210,.20);
+      background:
+        radial-gradient(circle at 50% 50%,rgba(95,150,200,.16),transparent 31%),
+        linear-gradient(135deg,rgba(0,0,0,.86),rgba(14,15,20,.94));
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+    }
+
+    .screen img{
+      width:132px;
+      height:132px;
+      border-radius:28px;
+      filter:drop-shadow(0 0 34px rgba(95,180,240,.20));
+    }
+
+    .screen:before{
+      content:"CLARVOX";
+      position:absolute;
+      bottom:-18px;
+      left:24px;
+      right:24px;
+      font-size:74px;
+      font-weight:1000;
+      letter-spacing:-.08em;
+      color:rgba(150,190,225,.10);
+      white-space:nowrap;
+    }
+
+    .meters{
+      position:relative;
+      z-index:1;
+      display:grid;
+      gap:13px;
+      margin-top:22px;
+    }
+
+    .meter{
+      height:11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.055);
+      overflow:hidden;
+    }
+
+    .meter span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#54ff79,#f8d650,#ff6b4a);
+      box-shadow:0 0 18px rgba(92,255,125,.25);
+    }
+
+    .consoleText{
+      position:relative;
+      z-index:1;
+      margin-top:20px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .section{margin-top:64px}
+
+    .section h2{
+      font-size:clamp(30px,4.2vw,48px);
+      letter-spacing:-.045em;
+      margin:0 0 22px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:25px;
+      padding:24px;
+      background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));
+      box-shadow:0 24px 74px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.075);
+    }
+
+    .card h3{
+      font-size:27px;
+      margin:0 0 9px;
+      letter-spacing:-.03em;
+    }
+
+    .status{
+      display:inline-flex;
+      margin:8px 0 18px;
+      padding:7px 11px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .status.alpha{color:var(--ok);border-color:rgba(117,240,162,.26);background:rgba(117,240,162,.05)}
+    .status.soon{color:var(--warn);border-color:rgba(255,204,102,.22);background:rgba(255,204,102,.045)}
+
+    .download{
+      display:block;
+      margin-top:16px;
+      padding:15px 14px;
+      border-radius:15px;
+      text-align:center;
+      text-decoration:none;
+      font-weight:1000;
+      color:#070706;
+      background:linear-gradient(135deg,#e88b58,#c9dced);
+      box-shadow:0 18px 42px rgba(70,120,170,.15);
+    }
+
+    .disabled{
+      color:var(--muted);
+      background:rgba(255,255,255,.055);
+      pointer-events:none;
+      box-shadow:none;
+      border:1px solid var(--line);
+    }
+
+    .warning{
+      border-color:rgba(255,204,102,.22);
+      background:linear-gradient(180deg,rgba(255,204,102,.07),rgba(255,255,255,.025));
+    }
+
+    .featureRow{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .mini{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:18px;
+      background:rgba(255,255,255,.032);
+      color:var(--muted);
+      min-height:108px;
+    }
+
+    .mini b{
+      display:block;
+      color:var(--text);
+      margin-bottom:8px;
+    }
+
+    footer{
+      margin-top:64px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      text-align:center;
+      font-size:14px;
+    }
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .featureRow{grid-template-columns:1fr 1fr}
+      .nav{align-items:flex-start}
+      .pill{font-size:13px}
+    }
+
+    @media(max-width:520px){
+      .wrap{padding:24px 18px 58px}
+      .nav{margin-bottom:42px}
+      .brand{font-size:15px;letter-spacing:.16em}
+      .brand img{width:50px;height:50px}
+      .actions{display:grid}
+      .btn{width:100%}
+      .console{min-height:390px}
+      .screen{height:230px}
+      .screen:before{font-size:58px;bottom:-12px}
+      .featureRow{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="brand">
+        <img src="assets/clarvox-icon.png" alt="ClarVox logo">
+        <div>CLARVOX</div>
+      </div>
+      <div class="pill">Alpha Download Center</div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <h1>ClarVox<br><span class="gold">Audio OS</span></h1>
+        <p class="lead">A dark premium production platform for modern creators: mixing, audio intelligence, arrangement tools and a serious studio workflow in one evolving ClarVox system.</p>
+
+        <div class="actions">
+          <a class="btn" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download Alpha</a>
+          <a class="btn secondary" href="https://github.com/jorikallio6/clarvox-elctron">View GitHub</a>
+        </div>
+
+        <p class="note">Current release is an unsigned macOS alpha test build. Windows and Linux downloads will be added here when their builds are ready.</p>
+      </div>
+
+      <div class="console">
+        <div class="screen">
+          <img src="assets/clarvox-icon.png" alt="ClarVox">
+        </div>
+        <div class="meters">
+          <div class="meter"><span style="width:92%"></span></div>
+          <div class="meter"><span style="width:68%"></span></div>
+          <div class="meter"><span style="width:84%"></span></div>
+          <div class="meter"><span style="width:56%"></span></div>
+        </div>
+        <div class="consoleText">Premium dark identity. Audio-first architecture. Built step by step toward a world-class creative workstation.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Download ClarVox</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>macOS</h3>
+          <div class="status alpha">Alpha available</div>
+          <p class="note">Intel x64 unsigned test build. Apple Silicon and Universal build will follow.</p>
+          <a class="download" href="https://github.com/jorikallio6/clarvox-elctron/releases/tag/v0.1.0-alpha">Download macOS Alpha</a>
+        </div>
+
+        <div class="card">
+          <h3>Windows</h3>
+          <div class="status soon">Coming soon</div>
+          <p class="note">Windows installer and portable version will be released here when ready.</p>
+          <a class="download disabled" href="#">Windows coming soon</a>
+        </div>
+
+        <div class="card">
+          <h3>Linux</h3>
+          <div class="status soon">Coming soon</div>
+          <p class="note">Linux AppImage and .deb builds are planned for later testing.</p>
+          <a class="download disabled" href="#">Linux coming soon</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Built for serious production</h2>
+      <div class="featureRow">
+        <div class="mini"><b>Mixer</b>Dark premium mixer direction with ClarVox identity.</div>
+        <div class="mini"><b>Producer</b>Creative production intelligence planned as a core layer.</div>
+        <div class="mini"><b>Audio Editor</b>Waveform and editing workflow designed for pro-level use.</div>
+        <div class="mini"><b>Cross-platform</b>macOS first, Windows and Linux prepared for the same center.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card warning">
+        <h2>Alpha notice</h2>
+        <p class="note">This is not yet Apple notarized. macOS may show a security warning on first launch. For testing, right click the app and choose Open. Do not use this as a final production release yet.</p>
+      </div>
+    </section>
+
+    <footer>
+      ClarVox Alpha · Mixer Tone Download Center
+    </footer>
+  </main>
+</body>
+</html>
